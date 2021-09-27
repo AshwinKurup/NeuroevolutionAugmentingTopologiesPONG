@@ -5,8 +5,7 @@ import numpy as np
 import pygame
 from random import randint
 pygame.init()
-# TODO my intention to use Spiking neural networks and NEAT to solve this
-# note that tf.placeholders are like the symbolic variables in python
+
 
 # Define some colors
 BLACK = (0, 0, 0)
@@ -123,24 +122,12 @@ ball_x_list = [] # these are the 3 lists of the 3 input neurons of the NN
 ball_y_list = []
 paddle_y_list  = []
 # -------- Main Program Loop -----------
-'''def appendBallXList():
-    print("X being added to")
-    ball_x_list.append(ball.rect.x)
-
-
-def appendBallYList():
-    print("Y being added to")
-    ball_y_list.append(ball.rect.y)
-
-def appendPaddleYList():
-    print("PADDLEY being added to")
-    paddle_y_list.append(paddleB.rect.y)'''
-
 while carryOn:
 
     ball_x_list.append(ball.rect.x)
     ball_y_list.append(ball.rect.y)
     paddle_y_list.append(paddleB.rect.y)
+    
     # --- Main event loop
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
@@ -178,11 +165,10 @@ while carryOn:
     if ball.rect.y < 0:
         ball.velocity[1] = -ball.velocity[1]
 
-        # Detect collisions between the ball and the paddles
+    # Detect collisions between the ball and the paddles
     if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
         ball.bounce()
 
-        # --- Drawing code should go here
     # First, clear the screen to black. 
     screen.fill(BLACK)
     # Draw the net
@@ -197,16 +183,9 @@ while carryOn:
     screen.blit(text, (420, 10))
     clock.tick(60)
 
-
-    # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
-    # --- Limit to 60 frames per second
-
-
-# Once we have exited the main program loop we can stop the game engine:
 pygame.quit()
 
-# issue now is why are they different sizes
-# okay now shove the images into a NEAT, see what comes up
+
 
